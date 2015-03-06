@@ -493,7 +493,7 @@ trait FlowOps[+Out, +Mat] {
    * Transforms a stream of streams into a contiguous stream of elements using the provided flattening strategy.
    * This operation can be used on a stream of element type [[akka.stream.scaladsl.Source]].
    */
-  def flatten[U](strategy: akka.stream.FlattenStrategy[Out, U]): Repr[U, Mat] = strategy match {
+  def flatten[U](strategy: FlattenStrategy[Out, U]): Repr[U, Mat] = strategy match {
     case _: FlattenStrategy.Concat[Out] ⇒ andThen(ConcatAll())
     case _ ⇒
       throw new IllegalArgumentException(s"Unsupported flattening strategy [${strategy.getClass.getName}]")

@@ -356,8 +356,8 @@ class Flow[-In, +Out, +Mat](delegate: scaladsl.Flow[In, Out, Mat]) extends Graph
    * Transforms a stream of streams into a contiguous stream of elements using the provided flattening strategy.
    * This operation can be used on a stream of element type [[Source]].
    */
-  def flatten[U](strategy: akka.stream.FlattenStrategy[Out, U]): javadsl.Flow[In, U, Mat] =
-    new Flow(delegate.flatten(strategy))
+  def flatten[U](strategy: FlattenStrategy[Out, U]): javadsl.Flow[In, U, Mat] =
+    new Flow(delegate.flatten(strategy.asScala))
 
   /**
    * Returns a new `Flow` that concatenates a secondary `Source` to this flow so that,

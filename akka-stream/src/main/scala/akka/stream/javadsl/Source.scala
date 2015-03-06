@@ -459,8 +459,8 @@ class Source[+Out, +Mat](delegate: scaladsl.Source[Out, Mat]) extends Graph[Sour
    * Transforms a stream of streams into a contiguous stream of elements using the provided flattening strategy.
    * This operation can be used on a stream of element type [[Source]].
    */
-  def flatten[U](strategy: akka.stream.FlattenStrategy[Out, U]): javadsl.Source[U, Mat] =
-    new Source(delegate.flatten(strategy))
+  def flatten[U](strategy: FlattenStrategy[Out, U]): javadsl.Source[U, Mat] =
+    new Source(delegate.flatten(strategy.asScala))
 
   /**
    * Applies given [[OperationAttributes]] to a given section.
